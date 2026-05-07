@@ -313,7 +313,7 @@
     <!-- divider -->
     <line x1="118" y1="158" x2="118" y2="178" stroke="rgba(126,184,255,0.12)" stroke-width="0.8"/>
     <text x="126" y="167" font-family="'Space Mono',monospace" font-size="14" font-weight="700"
-          fill="rgba(201,160,255,0.75)" style="animation:statGlow 2.5s 1.8s ease-in-out infinite">40+</text>
+          fill="rgba(201,160,255,0.75)" style="animation:statGlow 2.5s 1.8s ease-in-out infinite">10+</text>
     <text x="126" y="178" font-family="'Space Mono',monospace" font-size="7" letter-spacing="1"
           fill="rgba(190,160,255,0.45)">PROJECTS</text>
     <line x1="178" y1="158" x2="178" y2="178" stroke="rgba(126,184,255,0.12)" stroke-width="0.8"/>
