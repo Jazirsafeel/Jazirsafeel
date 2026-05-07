@@ -1,3 +1,6 @@
+<div align="center">
+  <img src="./jazir_banner.svg" alt="Jazir Safeel Banner" width="860"/>
+</div>
 # 💫 About Me:
  I’m currently working on<br>Web apps, full-stack projects, AI integrations, creative interfaces, and building digital experiences that feel modern and interactive.<br><br> I’m looking to collaborate on<br>Full-stack development, startup ideas, open-source projects, AI tools, and visually creative web experiences.<br><br> I’m looking for help with<br>Advanced backend systems, scaling applications, AI workflows, performance optimization, and product growth.<br><br>I’m currently learning<br>System design, scalable architectures, AI engineering, UI/UX design, cloud deployment, and modern web technologies.<br><br>Ask me about<br>React, Next.js, JavaScript, full-stack development, AI tools, APIs, web design, tech ideas, and creative problem solving.<br><br>Fun fact<br>I enjoy building projects that are both technically strong and visually memorable.<br><br>Optional additions:<br><br>Roles<br>Full-Stack Developer • Web Developer • UI/UX Enthusiast • AI Explorer<br><br>Focus<br>Creating fast, modern, and meaningful digital products.<br><br>Interests<br>Tech, design, futuristic UI, gaming, movies, music, and creative coding.<br>
 
