@@ -15,7 +15,7 @@ Full-Stack Developer • UI/UX Enthusiast • AI Explorer<br>
 ![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=merko)
 #  GitHub Stats:
 ![](https://streak-stats.demolab.com/?user=Jazirsafeel&theme=dark&hide_border=false)<br/>
-![](https://github-readme-stats.shion.dev/api?username=Jazirsafeel&theme=dark&hide_border=false&include_all_commits=false&count_private=false)<hr>
+![](https://github-readme-stats.shion.dev/api?username=Jazirsafeel&theme=dark&hide_border=false&include_all_commits=false&count_private=false)
 ![](https://github-readme-stats.shion.dev/api/top-langs/?username=Jazirsafeel&theme=dark&hide_border=false&include_all_commits=false&count_private=false&layout=compact)
 
 ##  GitHub Trophies
