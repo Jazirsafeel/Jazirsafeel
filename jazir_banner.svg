@@ -57,12 +57,12 @@
       }
 
       /* wave animations */
-      .w1 { animation: wave1 6s linear infinite; }
-      .w2 { animation: wave2 8s linear infinite; }
-      .w3 { animation: wave3 5s linear infinite; }
-      .w4 { animation: wave4 9s linear infinite; }
-      .w5 { animation: wave5 7s linear infinite; }
-      .w6 { animation: wave6 4s linear infinite; }
+      .w1 { animation: wave1 7.5s linear infinite; }
+      .w2 { animation: wave2 10s linear infinite; }
+      .w3 { animation: wave3 6.25s linear infinite; }
+      .w4 { animation: wave4 11.25s linear infinite; }
+      .w5 { animation: wave5 8.75s linear infinite; }
+      .w6 { animation: wave6 5s linear infinite; }
 
       /* particle float */
       .p1  { animation: floatUp 8s 0s linear infinite; }
