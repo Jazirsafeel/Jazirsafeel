@@ -229,11 +229,11 @@
   <text class="prompt" x="230" y="156" text-anchor="start">~/dev $</text>
 
   <!-- phrase 1 -->
-  <text class="typed t-line1" x="300" y="156" text-anchor="start">building things that matter_</text>
+  <text class="typed t-line1" x="300" y="156" text-anchor="start">full-stack dev. ai integrations._</text>
   <!-- phrase 2 -->
-  <text class="typed t-line2" x="300" y="156" text-anchor="start" opacity="0">react + next.js + ai explorer_</text>
+  <text class="typed t-line2" x="300" y="156" text-anchor="start" opacity="0">react · next.js · node · supabase_</text>
   <!-- phrase 3 -->
-  <text class="typed t-line3" x="300" y="156" text-anchor="start" opacity="0">coffee → code → ship 🚀_</text>
+  <text class="typed t-line3" x="300" y="156" text-anchor="start" opacity="0">crafting fast, modern digital products_</text>
   <!-- blinking cursor on typed line -->
   <rect class="cursor-bar" x="590" y="143" width="7" height="14" rx="1" fill="rgba(130,200,255,0.8)"/>
 
@@ -254,6 +254,5 @@
     <text class="badge-text" x="504" y="185" text-anchor="middle" fill="#ff9de2">UI/UX ENTHUSIAST</text>
   </g>
 
-  <!-- Bottom label -->
-  <text font-family="'Space Mono', monospace" font-size="9" letter-spacing="2" fill="rgba(130,200,255,0.2)" x="820" y="248" text-anchor="end">wave.svg ▸</text>
+
 </svg>
