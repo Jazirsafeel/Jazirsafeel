@@ -56,13 +56,19 @@
         opacity: 0;
       }
 
-      /* wave animations */
-      .w1 { animation: wave1 7.5s linear infinite; }
-      .w2 { animation: wave2 10s linear infinite; }
-      .w3 { animation: wave3 6.25s linear infinite; }
-      .w4 { animation: wave4 11.25s linear infinite; }
-      .w5 { animation: wave5 8.75s linear infinite; }
-      .w6 { animation: wave6 5s linear infinite; }
+/* Faster + smoother wave motion */
+.w1 { animation: wave1 3.2s ease-in-out infinite alternate; }
+.w2 { animation: wave2 4.1s ease-in-out infinite alternate; }
+.w3 { animation: wave3 2.5s ease-in-out infinite alternate; }
+.w4 { animation: wave4 4.8s ease-in-out infinite alternate; }
+.w5 { animation: wave5 3.6s ease-in-out infinite alternate; }
+.w6 { animation: wave6 2.1s ease-in-out infinite alternate; }
+
+/* Extra animated waves */
+.w7 { animation: wave7 3s ease-in-out infinite alternate; }
+.w8 { animation: wave8 4.4s ease-in-out infinite alternate; }
+
+
 
       /* particle float */
       .p1  { animation: floatUp 8s 0s linear infinite; }
@@ -117,6 +123,19 @@
         50%  { d: path("M0 230 Q215 214 430 230 Q645 246 860 230 L860 260 L0 260 Z"); }
         100% { d: path("M0 224 Q215 208 430 224 Q645 240 860 224 L860 260 L0 260 Z"); }
       }
+      @keyframes wave7 {
+  0%   { d: path("M0 150 Q215 130 430 150 Q645 170 860 150 L860 260 L0 260 Z"); }
+  50%  { d: path("M0 165 Q215 145 430 165 Q645 185 860 165 L860 260 L0 260 Z"); }
+  100% { d: path("M0 150 Q215 130 430 150 Q645 170 860 150 L860 260 L0 260 Z"); }
+}
+
+@keyframes wave8 {
+  0%   { d: path("M0 215 Q107 195 215 215 Q322 235 430 215 Q537 195 645 215 Q752 235 860 215 L860 260 L0 260 Z"); }
+  50%  { d: path("M0 225 Q107 205 215 225 Q322 245 430 225 Q537 205 645 225 Q752 245 860 225 L860 260 L0 260 Z"); }
+  100% { d: path("M0 215 Q107 195 215 215 Q322 235 430 215 Q537 195 645 215 Q752 235 860 215 L860 260 L0 260 Z"); }
+}
+
+
 
       @keyframes floatUp {
         0%   { transform: translateY(0px);    opacity: 0; }
@@ -125,30 +144,59 @@
         100% { transform: translateY(-260px); opacity: 0; }
       }
 
-      /* typing cycles: show each phrase 3.5s, gap 1s */
-      @keyframes type1 {
-        0%    { opacity: 1; }
-        25%   { opacity: 1; }
-        26%   { opacity: 0; }
-        99%   { opacity: 0; }
-        100%  { opacity: 1; }
-      }
-      @keyframes type2 {
-        0%    { opacity: 0; }
-        25%   { opacity: 0; }
-        26%   { opacity: 1; }
-        50%   { opacity: 1; }
-        51%   { opacity: 0; }
-        100%  { opacity: 0; }
-      }
-      @keyframes type3 {
-        0%    { opacity: 0; }
-        50%   { opacity: 0; }
-        51%   { opacity: 1; }
-        75%   { opacity: 1; }
-        76%   { opacity: 0; }
-        100%  { opacity: 0; }
-      }
+/* Better typing glow */
+.typed {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  fill: rgba(220,235,255,0.95);
+  letter-spacing: 0.6px;
+  filter: drop-shadow(0 0 5px rgba(126,184,255,0.35));
+}
+
+/* Faster typing rotation */
+.t-line1 { animation: type1 12s 1s steps(1) infinite; }
+.t-line2 { animation: type2 12s 1s steps(1) infinite; }
+.t-line3 { animation: type3 12s 1s steps(1) infinite; }
+.t-line4 { animation: type4 12s 1s steps(1) infinite; }
+.t-line5 { animation: type5 12s 1s steps(1) infinite; }
+
+@keyframes type1 {
+  0%   { opacity:1; }
+  18%  { opacity:1; }
+  20%  { opacity:0; }
+  100% { opacity:0; }
+}
+
+@keyframes type2 {
+  0%   { opacity:0; }
+  20%  { opacity:1; }
+  38%  { opacity:1; }
+  40%  { opacity:0; }
+  100% { opacity:0; }
+}
+
+@keyframes type3 {
+  0%   { opacity:0; }
+  40%  { opacity:1; }
+  58%  { opacity:1; }
+  60%  { opacity:0; }
+  100% { opacity:0; }
+}
+
+@keyframes type4 {
+  0%   { opacity:0; }
+  60%  { opacity:1; }
+  78%  { opacity:1; }
+  80%  { opacity:0; }
+  100% { opacity:0; }
+}
+
+@keyframes type5 {
+  0%   { opacity:0; }
+  80%  { opacity:1; }
+  98%  { opacity:1; }
+  100% { opacity:0; }
+}
     </style>
 
     <!-- gradients & filters -->
@@ -215,7 +263,12 @@
 
   <path class="w6" fill="rgba(170,90,255,0.06)"
     d="M0 224 Q215 208 430 224 Q645 240 860 224 L860 260 L0 260 Z"/>
+<!-- extra wave layers -->
+<path class="w7" fill="rgba(80,140,255,0.05)"
+ d="M0 150 Q215 130 430 150 Q645 170 860 150 L860 260 L0 260 Z"/>
 
+<path class="w8" fill="rgba(180,100,255,0.04)"
+ d="M0 215 Q107 195 215 215 Q322 235 430 215 Q537 195 645 215 Q752 235 860 215 L860 260 L0 260 Z"/>
   <!-- Content -->
   <!-- Greeting -->
   <text class="greeting" x="430" y="72" text-anchor="middle">HEY THERE, I'M</text>
@@ -234,6 +287,14 @@
   <text class="typed t-line2" x="300" y="156" text-anchor="start" opacity="0">react · next.js · node · supabase_</text>
   <!-- phrase 3 -->
   <text class="typed t-line3" x="300" y="156" text-anchor="start" opacity="0">crafting fast, modern digital products_</text>
+  <!-- extra typing lines -->
+<text class="typed t-line4" x="300" y="156" text-anchor="start" opacity="0">
+building scalable and cinematic web experiences_
+</text>
+
+<text class="typed t-line5" x="300" y="156" text-anchor="start" opacity="0">
+performance meets creativity._
+</text>
   <!-- blinking cursor on typed line -->
   <rect class="cursor-bar" x="590" y="143" width="7" height="14" rx="1" fill="rgba(130,200,255,0.8)"/>
 
@@ -253,6 +314,7 @@
     <rect x="444" y="170" width="120" height="22" rx="11" fill="rgba(255,157,226,0.06)" stroke="rgba(255,157,226,0.28)" stroke-width="0.8"/>
     <text class="badge-text" x="504" y="185" text-anchor="middle" fill="#ff9de2">UI/UX ENTHUSIAST</text>
   </g>
+  
 
 
 </svg>
