@@ -27,9 +27,6 @@ Full-Stack Developer • UI/UX Enthusiast • AI Explorer<br>
 
 
 
-###  Top Contributed Repo
-![](https://github-contributor-stats.vercel.app/api?username=Jazirsafeel&limit=5&theme=dark&combine_all_yearly_contributions=true)
-
 ##  Socials:
 [![Facebook](https://img.shields.io/badge/Facebook-%231877F2.svg?logo=Facebook&logoColor=white)](https://facebook.com/https://www.facebook.com/profile.php?id=61555958416651) [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/jazir_safeel) [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/jazir-safeel-3ab169406) [![email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:jazirsafeelps@gmail.com) 
 ---
