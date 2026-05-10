@@ -32,66 +32,104 @@
       @keyframes drawBracket{ from{stroke-dashoffset:80} to{stroke-dashoffset:0} }
       @keyframes badgeIn   { from{opacity:0;transform:translateY(8px) scale(0.9)} to{opacity:1;transform:translateY(0) scale(1)} }
 
-      /* ── Typewriter: 5 phrases cycle, each ~2.2s type + 1.5s hold + 0.3s erase = ~4s per phrase, total ~20s ── */
-      /* Each phrase uses clip-path width reveal on a foreignObject / we do it via char-by-char with steps() on max-width */
-      /* Since SVG text can't do overflow:hidden per-char, we use a rect clipPath that grows then shrinks */
+      /* Typing sequence — 5 phrases, opacity swap (GitHub-safe) */
+      @keyframes t1 { 0%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0} }
+      @keyframes t2 { 0%{opacity:0}19%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0} }
+      @keyframes t3 { 0%{opacity:0}38%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0} }
+      @keyframes t4 { 0%{opacity:0}57%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0} }
+      @keyframes t5 { 0%{opacity:0}76%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0} }
 
-      /* Phrase visibility windows (total cycle = 20s) */
-      /* p1: 0–4s type+hold, 4–4.3s erase | p2: 4.3–8.3s | p3: 8.3–12.3s | p4: 12.3–16.3s | p5: 16.3–20s */
-      @keyframes showP1 { 0%{opacity:1} 21.5%{opacity:1} 21.6%{opacity:0} 100%{opacity:0} }
-      @keyframes showP2 { 0%{opacity:0} 21.5%{opacity:0} 21.6%{opacity:1} 42.9%{opacity:1} 43%{opacity:0} 100%{opacity:0} }
-      @keyframes showP3 { 0%{opacity:0} 42.9%{opacity:0} 43%{opacity:1} 64.3%{opacity:1} 64.4%{opacity:0} 100%{opacity:0} }
-      @keyframes showP4 { 0%{opacity:0} 64.3%{opacity:0} 64.4%{opacity:1} 85.7%{opacity:1} 85.8%{opacity:0} 100%{opacity:0} }
-      @keyframes showP5 { 0%{opacity:0} 85.7%{opacity:0} 85.8%{opacity:1} 99%{opacity:1} 100%{opacity:0} }
+      /* Per-character reveal inside each phrase using steps — GitHub-safe opacity on tspan */
+      /* Each char animates from opacity 0→1 at its own delay offset within the phrase window */
+      /* Phrase 1 window: 0–19% of 13s = 0–2.47s. Each char ~65ms apart */
+      @keyframes c1  {0%{opacity:0}  1%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
+      @keyframes c2  {0%{opacity:0}  2%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
+      @keyframes c3  {0%{opacity:0}  3%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
+      @keyframes c4  {0%{opacity:0}  4%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
+      @keyframes c5  {0%{opacity:0}  5%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
+      @keyframes c6  {0%{opacity:0}  6%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
+      @keyframes c7  {0%{opacity:0}  7%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
+      @keyframes c8  {0%{opacity:0}  8%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
+      @keyframes c9  {0%{opacity:0}  9%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
+      @keyframes c10 {0%{opacity:0} 10%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
+      @keyframes c11 {0%{opacity:0} 11%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
+      @keyframes c12 {0%{opacity:0} 12%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
+      @keyframes c13 {0%{opacity:0} 13%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
+      @keyframes c14 {0%{opacity:0} 14%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
+      @keyframes c15 {0%{opacity:0} 15%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
+      @keyframes c16 {0%{opacity:0} 16%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
 
-      /* Typewriter clip reveal — clipRect x=290 grows from width 0 to full then back to 0 */
-      /* Each phrase has its own timing window. We animate a clipPath rect width. */
+      /* Phrase 2 window: 19–38%. Chars appear from 20% onward */
+      @keyframes d1  {0%{opacity:0}20%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
+      @keyframes d2  {0%{opacity:0}21%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
+      @keyframes d3  {0%{opacity:0}22%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
+      @keyframes d4  {0%{opacity:0}23%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
+      @keyframes d5  {0%{opacity:0}24%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
+      @keyframes d6  {0%{opacity:0}25%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
+      @keyframes d7  {0%{opacity:0}26%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
+      @keyframes d8  {0%{opacity:0}27%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
+      @keyframes d9  {0%{opacity:0}28%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
+      @keyframes d10 {0%{opacity:0}29%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
+      @keyframes d11 {0%{opacity:0}30%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
+      @keyframes d12 {0%{opacity:0}31%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
+      @keyframes d13 {0%{opacity:0}32%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
+      @keyframes d14 {0%{opacity:0}33%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
+      @keyframes d15 {0%{opacity:0}34%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
+      @keyframes d16 {0%{opacity:0}35%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
 
-      /* Phrase 1 clip: type 0→2.0s (38 chars × ~53ms/char), hold 2–3.5s, erase 3.5→4.3s */
-      @keyframes tw1 {
-        0%   { width: 0px; }
-        10%  { width: 330px; }   /* typed out */
-        17.5%{ width: 330px; }   /* hold */
-        21.4%{ width: 0px;   }   /* erased */
-        100% { width: 0px;   }
-      }
-      @keyframes tw2 {
-        0%   { width: 0px; }
-        21.5%{ width: 0px; }
-        31.5%{ width: 330px; }
-        39%  { width: 330px; }
-        43%  { width: 0px;   }
-        100% { width: 0px;   }
-      }
-      @keyframes tw3 {
-        0%   { width: 0px; }
-        43%  { width: 0px; }
-        53%  { width: 330px; }
-        60.5%{ width: 330px; }
-        64.4%{ width: 0px;   }
-        100% { width: 0px;   }
-      }
-      @keyframes tw4 {
-        0%   { width: 0px; }
-        64.4%{ width: 0px; }
-        74.4%{ width: 330px; }
-        82%  { width: 330px; }
-        85.8%{ width: 0px;   }
-        100% { width: 0px;   }
-      }
-      @keyframes tw5 {
-        0%   { width: 0px; }
-        85.8%{ width: 0px; }
-        95.8%{ width: 330px; }
-        100% { width: 330px; }
-      }
+      /* Phrase 3: 38–57% */
+      @keyframes e1  {0%{opacity:0}39%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
+      @keyframes e2  {0%{opacity:0}40%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
+      @keyframes e3  {0%{opacity:0}41%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
+      @keyframes e4  {0%{opacity:0}42%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
+      @keyframes e5  {0%{opacity:0}43%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
+      @keyframes e6  {0%{opacity:0}44%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
+      @keyframes e7  {0%{opacity:0}45%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
+      @keyframes e8  {0%{opacity:0}46%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
+      @keyframes e9  {0%{opacity:0}47%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
+      @keyframes e10 {0%{opacity:0}48%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
+      @keyframes e11 {0%{opacity:0}49%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
+      @keyframes e12 {0%{opacity:0}50%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
+      @keyframes e13 {0%{opacity:0}51%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
+      @keyframes e14 {0%{opacity:0}52%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
+      @keyframes e15 {0%{opacity:0}53%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
+      @keyframes e16 {0%{opacity:0}54%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
 
-      /* Cursor blink during active phrase — we show cursor while phrase is active */
-      @keyframes cur1 { 0%{opacity:1} 21.5%{opacity:1} 21.6%{opacity:0} 100%{opacity:0} }
-      @keyframes cur2 { 0%{opacity:0} 21.5%{opacity:0} 21.6%{opacity:1} 43%{opacity:1} 43.1%{opacity:0} 100%{opacity:0} }
-      @keyframes cur3 { 0%{opacity:0} 43%{opacity:0} 43.1%{opacity:1} 64.4%{opacity:1} 64.5%{opacity:0} 100%{opacity:0} }
-      @keyframes cur4 { 0%{opacity:0} 64.4%{opacity:0} 64.5%{opacity:1} 85.8%{opacity:1} 85.9%{opacity:0} 100%{opacity:0} }
-      @keyframes cur5 { 0%{opacity:0} 85.8%{opacity:0} 85.9%{opacity:1} 100%{opacity:1} }
+      /* Phrase 4: 57–76% */
+      @keyframes f1  {0%{opacity:0}58%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
+      @keyframes f2  {0%{opacity:0}59%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
+      @keyframes f3  {0%{opacity:0}60%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
+      @keyframes f4  {0%{opacity:0}61%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
+      @keyframes f5  {0%{opacity:0}62%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
+      @keyframes f6  {0%{opacity:0}63%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
+      @keyframes f7  {0%{opacity:0}64%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
+      @keyframes f8  {0%{opacity:0}65%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
+      @keyframes f9  {0%{opacity:0}66%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
+      @keyframes f10 {0%{opacity:0}67%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
+      @keyframes f11 {0%{opacity:0}68%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
+      @keyframes f12 {0%{opacity:0}69%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
+      @keyframes f13 {0%{opacity:0}70%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
+      @keyframes f14 {0%{opacity:0}71%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
+      @keyframes f15 {0%{opacity:0}72%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
+      @keyframes f16 {0%{opacity:0}73%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
+
+      /* Phrase 5: 76–97% */
+      @keyframes g1  {0%{opacity:0}77%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
+      @keyframes g2  {0%{opacity:0}78%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
+      @keyframes g3  {0%{opacity:0}79%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
+      @keyframes g4  {0%{opacity:0}80%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
+      @keyframes g5  {0%{opacity:0}81%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
+      @keyframes g6  {0%{opacity:0}82%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
+      @keyframes g7  {0%{opacity:0}83%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
+      @keyframes g8  {0%{opacity:0}84%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
+      @keyframes g9  {0%{opacity:0}85%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
+      @keyframes g10 {0%{opacity:0}86%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
+      @keyframes g11 {0%{opacity:0}87%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
+      @keyframes g12 {0%{opacity:0}88%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
+      @keyframes g13 {0%{opacity:0}89%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
+      @keyframes g14 {0%{opacity:0}90%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
+      @keyframes g15 {0%{opacity:0}91%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
+      @keyframes g16 {0%{opacity:0}92%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
     </style>
 
     <linearGradient id="bgTop" x1="0" y1="0" x2="0" y2="1">
@@ -150,12 +188,7 @@
 
     <clipPath id="bannerClip"><rect width="860" height="300" rx="16"/></clipPath>
 
-    <!-- Typewriter clip paths — each is a rect anchored at x=290 that grows rightward -->
-    <clipPath id="twClip1"><rect id="twR1" x="290" y="148" width="0" height="24" style="animation:tw1 20s 1s steps(38,end) infinite"/></clipPath>
-    <clipPath id="twClip2"><rect id="twR2" x="290" y="148" width="0" height="24" style="animation:tw2 20s 1s steps(36,end) infinite"/></clipPath>
-    <clipPath id="twClip3"><rect id="twR3" x="290" y="148" width="0" height="24" style="animation:tw3 20s 1s steps(38,end) infinite"/></clipPath>
-    <clipPath id="twClip4"><rect id="twR4" x="290" y="148" width="0" height="24" style="animation:tw4 20s 1s steps(36,end) infinite"/></clipPath>
-    <clipPath id="twClip5"><rect id="twR5" x="290" y="148" width="0" height="24" style="animation:tw5 20s 1s steps(34,end) infinite"/></clipPath>
+
   </defs>
 
   <!-- BACKGROUND -->
@@ -254,22 +287,109 @@
   </text>
 
   <!-- ── Terminal line ── -->
-  <!-- Static prompt -->
   <text x="220" y="166" font-family="'Space Mono',monospace" font-size="11.5" fill="rgba(80,200,120,0.7)">~/dev $</text>
 
-  <!-- Phrase 1 — clipped typewriter reveal -->
-  <text x="290" y="166" font-family="'Space Mono',monospace" font-size="11.5" fill="rgba(220,235,255,0.9)" letter-spacing="0.5" filter="url(#subtleGlow)" clip-path="url(#twClip1)">full-stack engineer · ai integrations</text>
-  <!-- Phrase 2 -->
-  <text x="290" y="166" font-family="'Space Mono',monospace" font-size="11.5" fill="rgba(220,235,255,0.9)" letter-spacing="0.5" clip-path="url(#twClip2)">react · next.js · node.js · supabase</text>
-  <!-- Phrase 3 -->
-  <text x="290" y="166" font-family="'Space Mono',monospace" font-size="11.5" fill="rgba(220,235,255,0.9)" letter-spacing="0.5" clip-path="url(#twClip3)">obsessed with performance &amp; motion</text>
-  <!-- Phrase 4 -->
-  <text x="290" y="166" font-family="'Space Mono',monospace" font-size="11.5" fill="rgba(220,235,255,0.9)" letter-spacing="0.5" clip-path="url(#twClip4)">building the web, one pixel at a time</text>
-  <!-- Phrase 5 -->
-  <text x="290" y="166" font-family="'Space Mono',monospace" font-size="11.5" fill="rgba(220,235,255,0.9)" letter-spacing="0.5" clip-path="url(#twClip5)">where creativity meets clean code</text>
+  <!-- Phrase 1: "full-stack engineer · ai integrations" — 16 chunks, each ~2 chars -->
+  <text font-family="'Space Mono',monospace" font-size="11.5" fill="rgba(220,235,255,0.9)" filter="url(#subtleGlow)">
+    <tspan x="290" y="166" opacity="0" style="animation:c1 13s 1s steps(1) infinite">fu</tspan>
+    <tspan opacity="0" style="animation:c2 13s 1s steps(1) infinite">ll</tspan>
+    <tspan opacity="0" style="animation:c3 13s 1s steps(1) infinite">-s</tspan>
+    <tspan opacity="0" style="animation:c4 13s 1s steps(1) infinite">ta</tspan>
+    <tspan opacity="0" style="animation:c5 13s 1s steps(1) infinite">ck</tspan>
+    <tspan opacity="0" style="animation:c6 13s 1s steps(1) infinite"> e</tspan>
+    <tspan opacity="0" style="animation:c7 13s 1s steps(1) infinite">ng</tspan>
+    <tspan opacity="0" style="animation:c8 13s 1s steps(1) infinite">in</tspan>
+    <tspan opacity="0" style="animation:c9 13s 1s steps(1) infinite">ee</tspan>
+    <tspan opacity="0" style="animation:c10 13s 1s steps(1) infinite">r </tspan>
+    <tspan opacity="0" style="animation:c11 13s 1s steps(1) infinite">· </tspan>
+    <tspan opacity="0" style="animation:c12 13s 1s steps(1) infinite">ai</tspan>
+    <tspan opacity="0" style="animation:c13 13s 1s steps(1) infinite"> i</tspan>
+    <tspan opacity="0" style="animation:c14 13s 1s steps(1) infinite">nt</tspan>
+    <tspan opacity="0" style="animation:c15 13s 1s steps(1) infinite">eg</tspan>
+    <tspan opacity="0" style="animation:c16 13s 1s steps(1) infinite">rations</tspan>
+  </text>
 
-  <!-- Blinking terminal cursor — tracks alongside the growing text using the same clip timing -->
-  <!-- We keep a simple fixed-position cursor that blinks continuously; it looks correct since monospace text grows left to right -->
+  <!-- Phrase 2: "react · next.js · node.js · supabase" -->
+  <text font-family="'Space Mono',monospace" font-size="11.5" fill="rgba(220,235,255,0.9)">
+    <tspan x="290" y="166" opacity="0" style="animation:d1 13s 1s steps(1) infinite">re</tspan>
+    <tspan opacity="0" style="animation:d2 13s 1s steps(1) infinite">ac</tspan>
+    <tspan opacity="0" style="animation:d3 13s 1s steps(1) infinite">t </tspan>
+    <tspan opacity="0" style="animation:d4 13s 1s steps(1) infinite">· </tspan>
+    <tspan opacity="0" style="animation:d5 13s 1s steps(1) infinite">ne</tspan>
+    <tspan opacity="0" style="animation:d6 13s 1s steps(1) infinite">xt</tspan>
+    <tspan opacity="0" style="animation:d7 13s 1s steps(1) infinite">.j</tspan>
+    <tspan opacity="0" style="animation:d8 13s 1s steps(1) infinite">s </tspan>
+    <tspan opacity="0" style="animation:d9 13s 1s steps(1) infinite">· </tspan>
+    <tspan opacity="0" style="animation:d10 13s 1s steps(1) infinite">no</tspan>
+    <tspan opacity="0" style="animation:d11 13s 1s steps(1) infinite">de</tspan>
+    <tspan opacity="0" style="animation:d12 13s 1s steps(1) infinite">.j</tspan>
+    <tspan opacity="0" style="animation:d13 13s 1s steps(1) infinite">s </tspan>
+    <tspan opacity="0" style="animation:d14 13s 1s steps(1) infinite">· </tspan>
+    <tspan opacity="0" style="animation:d15 13s 1s steps(1) infinite">su</tspan>
+    <tspan opacity="0" style="animation:d16 13s 1s steps(1) infinite">pabase</tspan>
+  </text>
+
+  <!-- Phrase 3: "obsessed with performance &amp; motion" -->
+  <text font-family="'Space Mono',monospace" font-size="11.5" fill="rgba(220,235,255,0.9)">
+    <tspan x="290" y="166" opacity="0" style="animation:e1 13s 1s steps(1) infinite">ob</tspan>
+    <tspan opacity="0" style="animation:e2 13s 1s steps(1) infinite">se</tspan>
+    <tspan opacity="0" style="animation:e3 13s 1s steps(1) infinite">ss</tspan>
+    <tspan opacity="0" style="animation:e4 13s 1s steps(1) infinite">ed</tspan>
+    <tspan opacity="0" style="animation:e5 13s 1s steps(1) infinite"> w</tspan>
+    <tspan opacity="0" style="animation:e6 13s 1s steps(1) infinite">it</tspan>
+    <tspan opacity="0" style="animation:e7 13s 1s steps(1) infinite">h </tspan>
+    <tspan opacity="0" style="animation:e8 13s 1s steps(1) infinite">pe</tspan>
+    <tspan opacity="0" style="animation:e9 13s 1s steps(1) infinite">rf</tspan>
+    <tspan opacity="0" style="animation:e10 13s 1s steps(1) infinite">or</tspan>
+    <tspan opacity="0" style="animation:e11 13s 1s steps(1) infinite">ma</tspan>
+    <tspan opacity="0" style="animation:e12 13s 1s steps(1) infinite">nc</tspan>
+    <tspan opacity="0" style="animation:e13 13s 1s steps(1) infinite">e </tspan>
+    <tspan opacity="0" style="animation:e14 13s 1s steps(1) infinite">&amp; </tspan>
+    <tspan opacity="0" style="animation:e15 13s 1s steps(1) infinite">mo</tspan>
+    <tspan opacity="0" style="animation:e16 13s 1s steps(1) infinite">tion</tspan>
+  </text>
+
+  <!-- Phrase 4: "building the web, one pixel at a time" -->
+  <text font-family="'Space Mono',monospace" font-size="11.5" fill="rgba(220,235,255,0.9)">
+    <tspan x="290" y="166" opacity="0" style="animation:f1 13s 1s steps(1) infinite">bu</tspan>
+    <tspan opacity="0" style="animation:f2 13s 1s steps(1) infinite">il</tspan>
+    <tspan opacity="0" style="animation:f3 13s 1s steps(1) infinite">di</tspan>
+    <tspan opacity="0" style="animation:f4 13s 1s steps(1) infinite">ng</tspan>
+    <tspan opacity="0" style="animation:f5 13s 1s steps(1) infinite"> t</tspan>
+    <tspan opacity="0" style="animation:f6 13s 1s steps(1) infinite">he</tspan>
+    <tspan opacity="0" style="animation:f7 13s 1s steps(1) infinite"> w</tspan>
+    <tspan opacity="0" style="animation:f8 13s 1s steps(1) infinite">eb</tspan>
+    <tspan opacity="0" style="animation:f9 13s 1s steps(1) infinite">, </tspan>
+    <tspan opacity="0" style="animation:f10 13s 1s steps(1) infinite">on</tspan>
+    <tspan opacity="0" style="animation:f11 13s 1s steps(1) infinite">e </tspan>
+    <tspan opacity="0" style="animation:f12 13s 1s steps(1) infinite">pi</tspan>
+    <tspan opacity="0" style="animation:f13 13s 1s steps(1) infinite">xe</tspan>
+    <tspan opacity="0" style="animation:f14 13s 1s steps(1) infinite">l </tspan>
+    <tspan opacity="0" style="animation:f15 13s 1s steps(1) infinite">at</tspan>
+    <tspan opacity="0" style="animation:f16 13s 1s steps(1) infinite"> a time</tspan>
+  </text>
+
+  <!-- Phrase 5: "where creativity meets clean code" -->
+  <text font-family="'Space Mono',monospace" font-size="11.5" fill="rgba(220,235,255,0.9)">
+    <tspan x="290" y="166" opacity="0" style="animation:g1 13s 1s steps(1) infinite">wh</tspan>
+    <tspan opacity="0" style="animation:g2 13s 1s steps(1) infinite">er</tspan>
+    <tspan opacity="0" style="animation:g3 13s 1s steps(1) infinite">e </tspan>
+    <tspan opacity="0" style="animation:g4 13s 1s steps(1) infinite">cr</tspan>
+    <tspan opacity="0" style="animation:g5 13s 1s steps(1) infinite">ea</tspan>
+    <tspan opacity="0" style="animation:g6 13s 1s steps(1) infinite">ti</tspan>
+    <tspan opacity="0" style="animation:g7 13s 1s steps(1) infinite">vi</tspan>
+    <tspan opacity="0" style="animation:g8 13s 1s steps(1) infinite">ty</tspan>
+    <tspan opacity="0" style="animation:g9 13s 1s steps(1) infinite"> m</tspan>
+    <tspan opacity="0" style="animation:g10 13s 1s steps(1) infinite">ee</tspan>
+    <tspan opacity="0" style="animation:g11 13s 1s steps(1) infinite">ts</tspan>
+    <tspan opacity="0" style="animation:g12 13s 1s steps(1) infinite"> c</tspan>
+    <tspan opacity="0" style="animation:g13 13s 1s steps(1) infinite">le</tspan>
+    <tspan opacity="0" style="animation:g14 13s 1s steps(1) infinite">an</tspan>
+    <tspan opacity="0" style="animation:g15 13s 1s steps(1) infinite"> c</tspan>
+    <tspan opacity="0" style="animation:g16 13s 1s steps(1) infinite">ode</tspan>
+  </text>
+
+  <!-- Blinking terminal cursor -->
   <rect x="620" y="154" width="8" height="14" rx="1" fill="rgba(130,200,255,0.85)" style="animation:blink 0.85s step-end infinite"/>
 
   <!-- STAT COUNTERS -->
