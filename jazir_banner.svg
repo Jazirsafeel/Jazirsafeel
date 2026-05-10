@@ -1,15 +1,18 @@
 <svg width="860" height="300" viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;family=Syne:wght@800&amp;display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;family=Bebas+Neue&amp;family=Syne:wght@800&amp;display=swap');
 
+      /* ── Keyframes ── */
       @keyframes blink        { 50% { opacity: 0; } }
       @keyframes fadeDown     { from { opacity:0; transform:translateY(-12px); } to { opacity:1; transform:translateY(0); } }
       @keyframes fadeUp       { from { opacity:0; transform:translateY(12px);  } to { opacity:1; transform:translateY(0); } }
       @keyframes fadeIn       { from { opacity:0; } to { opacity:1; } }
+      @keyframes pulseGlow    { 0%,100% { filter:drop-shadow(0 0 4px #7eb8ff88); } 50% { filter:drop-shadow(0 0 14px #a0d8ffcc); } }
       @keyframes scanLine     { 0% { transform:translateY(-300px); } 100% { transform:translateY(600px); } }
       @keyframes drift        { 0%,100% { transform:translateX(0); } 50% { transform:translateX(6px); } }
 
+      /* Water waves — realistic layered physics */
       @keyframes wA { 0%{d:path("M0 210 C60 196,140 224,220 210 C300 196,380 224,460 210 C540 196,620 224,700 210 C780 196,840 224,860 210 L860 300 L0 300 Z")} 50%{d:path("M0 220 C80 206,160 234,240 220 C320 206,400 234,480 220 C560 206,640 234,720 220 C800 206,860 218,860 220 L860 300 L0 300 Z")} 100%{d:path("M0 210 C60 196,140 224,220 210 C300 196,380 224,460 210 C540 196,620 224,700 210 C780 196,840 224,860 210 L860 300 L0 300 Z")} }
       @keyframes wB { 0%{d:path("M0 228 C90 212,180 244,270 228 C360 212,450 244,540 228 C630 212,720 244,810 228 C840 222,855 228,860 228 L860 300 L0 300 Z")} 50%{d:path("M0 235 C70 219,160 251,250 235 C340 219,430 251,520 235 C610 219,700 251,790 235 C830 229,855 235,860 235 L860 300 L0 300 Z")} 100%{d:path("M0 228 C90 212,180 244,270 228 C360 212,450 244,540 228 C630 212,720 244,810 228 C840 222,855 228,860 228 L860 300 L0 300 Z")} }
       @keyframes wC { 0%{d:path("M0 244 C120 228,240 260,360 244 C480 228,600 260,720 244 C780 236,830 248,860 244 L860 300 L0 300 Z")} 50%{d:path("M0 250 C100 234,220 266,340 250 C460 234,580 266,700 250 C800 238,845 254,860 250 L860 300 L0 300 Z")} 100%{d:path("M0 244 C120 228,240 260,360 244 C480 228,600 260,720 244 C780 236,830 248,860 244 L860 300 L0 300 Z")} }
@@ -17,126 +20,55 @@
       @keyframes wE { 0%{d:path("M0 270 C200 258,400 282,600 270 C720 262,800 278,860 270 L860 300 L0 300 Z")} 50%{d:path("M0 274 C180 262,380 286,580 274 C710 266,800 282,860 274 L860 300 L0 300 Z")} 100%{d:path("M0 270 C200 258,400 282,600 270 C720 262,800 278,860 270 L860 300 L0 300 Z")} }
       @keyframes wF { 0%{d:path("M0 282 C250 274,500 290,750 282 C810 278,845 286,860 282 L860 300 L0 300 Z")} 50%{d:path("M0 285 C230 277,480 293,730 285 C800 281,840 289,860 285 L860 300 L0 300 Z")} 100%{d:path("M0 282 C250 274,500 290,750 282 C810 278,845 286,860 282 L860 300 L0 300 Z")} }
 
-      @keyframes foam1 { 0%,100%{opacity:0.55;transform:scaleX(1) translateY(0)} 50%{opacity:0.3;transform:scaleX(1.04) translateY(-1px)} }
-      @keyframes foam2 { 0%,100%{opacity:0.35;transform:scaleX(1) translateY(0)} 50%{opacity:0.2;transform:scaleX(0.97) translateY(1px)} }
-      @keyframes foam3 { 0%,100%{opacity:0.4;transform:scaleX(1) translateY(0)} 50%{opacity:0.25;transform:scaleX(1.03) translateY(-2px)} }
+      /* Foam ripple highlights */
+      @keyframes foam1 { 0%,100%{opacity:0.55;transform:scaleX(1)   translateY(0)} 50%{opacity:0.3;transform:scaleX(1.04) translateY(-1px)} }
+      @keyframes foam2 { 0%,100%{opacity:0.35;transform:scaleX(1)   translateY(0)} 50%{opacity:0.2;transform:scaleX(0.97) translateY(1px)} }
+      @keyframes foam3 { 0%,100%{opacity:0.4; transform:scaleX(1)   translateY(0)} 50%{opacity:0.25;transform:scaleX(1.03) translateY(-2px)} }
+
+      /* Light shimmer on water surface */
       @keyframes shimmer { 0%{transform:translateX(-860px)} 100%{transform:translateX(860px)} }
+
+      /* Particles */
       @keyframes floatUp { 0%{transform:translateY(0) scale(1);opacity:0} 8%{opacity:1} 85%{opacity:0.7} 100%{transform:translateY(-300px) scale(0.4);opacity:0} }
 
+      /* Glitch name effect */
       @keyframes glitch1 { 0%,90%,100%{clip-path:inset(0 0 100% 0);transform:translate(0)} 92%{clip-path:inset(20% 0 60% 0);transform:translate(-3px,1px)} 94%{clip-path:inset(60% 0 20% 0);transform:translate(3px,-1px)} 96%{clip-path:inset(40% 0 40% 0);transform:translate(-2px,2px)} 98%{clip-path:inset(0 0 100% 0)} }
       @keyframes glitch2 { 0%,90%,100%{clip-path:inset(0 0 100% 0);transform:translate(0)} 92%{clip-path:inset(55% 0 25% 0);transform:translate(4px,-2px)} 94%{clip-path:inset(10% 0 70% 0);transform:translate(-4px,2px)} 96%{clip-path:inset(35% 0 45% 0);transform:translate(2px,-1px)} 98%{clip-path:inset(0 0 100% 0)} }
 
+      /* Subtitle slide */
       @keyframes slideLeft { from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:translateX(0)} }
-      @keyframes statGlow  { 0%,100%{fill:rgba(126,184,255,0.75)} 50%{fill:rgba(200,230,255,0.95)} }
-      @keyframes gridScroll{ from{transform:translateY(0)} to{transform:translateY(20px)} }
-      @keyframes drawBracket{ from{stroke-dashoffset:80} to{stroke-dashoffset:0} }
-      @keyframes badgeIn   { from{opacity:0;transform:translateY(8px) scale(0.9)} to{opacity:1;transform:translateY(0) scale(1)} }
 
-      /* Typing sequence — 5 phrases, opacity swap (GitHub-safe) */
+      /* Orb pulse */
+      @keyframes orbPulse { 0%,100%{r:48;opacity:0.07} 50%{r:60;opacity:0.12} }
+      @keyframes orbPulse2 { 0%,100%{r:30;opacity:0.09} 50%{r:38;opacity:0.16} }
+
+      /* Typing sequence — 5 phrases */
       @keyframes t1 { 0%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0} }
       @keyframes t2 { 0%{opacity:0}19%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0} }
       @keyframes t3 { 0%{opacity:0}38%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0} }
       @keyframes t4 { 0%{opacity:0}57%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0} }
       @keyframes t5 { 0%{opacity:0}76%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0} }
 
-      /* Per-character reveal inside each phrase using steps — GitHub-safe opacity on tspan */
-      /* Each char animates from opacity 0→1 at its own delay offset within the phrase window */
-      /* Phrase 1 window: 0–19% of 13s = 0–2.47s. Each char ~65ms apart */
-      @keyframes c1  {0%{opacity:0}  1%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
-      @keyframes c2  {0%{opacity:0}  2%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
-      @keyframes c3  {0%{opacity:0}  3%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
-      @keyframes c4  {0%{opacity:0}  4%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
-      @keyframes c5  {0%{opacity:0}  5%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
-      @keyframes c6  {0%{opacity:0}  6%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
-      @keyframes c7  {0%{opacity:0}  7%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
-      @keyframes c8  {0%{opacity:0}  8%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
-      @keyframes c9  {0%{opacity:0}  9%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
-      @keyframes c10 {0%{opacity:0} 10%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
-      @keyframes c11 {0%{opacity:0} 11%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
-      @keyframes c12 {0%{opacity:0} 12%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
-      @keyframes c13 {0%{opacity:0} 13%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
-      @keyframes c14 {0%{opacity:0} 14%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
-      @keyframes c15 {0%{opacity:0} 15%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
-      @keyframes c16 {0%{opacity:0} 16%{opacity:1}17%{opacity:1}19%{opacity:0}100%{opacity:0}}
+      /* Badge entrance */
+      @keyframes badgeIn { from{opacity:0;transform:translateY(8px) scale(0.9)} to{opacity:1;transform:translateY(0) scale(1)} }
 
-      /* Phrase 2 window: 19–38%. Chars appear from 20% onward */
-      @keyframes d1  {0%{opacity:0}20%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
-      @keyframes d2  {0%{opacity:0}21%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
-      @keyframes d3  {0%{opacity:0}22%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
-      @keyframes d4  {0%{opacity:0}23%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
-      @keyframes d5  {0%{opacity:0}24%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
-      @keyframes d6  {0%{opacity:0}25%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
-      @keyframes d7  {0%{opacity:0}26%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
-      @keyframes d8  {0%{opacity:0}27%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
-      @keyframes d9  {0%{opacity:0}28%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
-      @keyframes d10 {0%{opacity:0}29%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
-      @keyframes d11 {0%{opacity:0}30%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
-      @keyframes d12 {0%{opacity:0}31%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
-      @keyframes d13 {0%{opacity:0}32%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
-      @keyframes d14 {0%{opacity:0}33%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
-      @keyframes d15 {0%{opacity:0}34%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
-      @keyframes d16 {0%{opacity:0}35%{opacity:1}36%{opacity:1}38%{opacity:0}100%{opacity:0}}
+      /* Stat counter glow pulse */
+      @keyframes statGlow { 0%,100%{fill:rgba(126,184,255,0.75)} 50%{fill:rgba(200,230,255,0.95)} }
 
-      /* Phrase 3: 38–57% */
-      @keyframes e1  {0%{opacity:0}39%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
-      @keyframes e2  {0%{opacity:0}40%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
-      @keyframes e3  {0%{opacity:0}41%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
-      @keyframes e4  {0%{opacity:0}42%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
-      @keyframes e5  {0%{opacity:0}43%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
-      @keyframes e6  {0%{opacity:0}44%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
-      @keyframes e7  {0%{opacity:0}45%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
-      @keyframes e8  {0%{opacity:0}46%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
-      @keyframes e9  {0%{opacity:0}47%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
-      @keyframes e10 {0%{opacity:0}48%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
-      @keyframes e11 {0%{opacity:0}49%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
-      @keyframes e12 {0%{opacity:0}50%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
-      @keyframes e13 {0%{opacity:0}51%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
-      @keyframes e14 {0%{opacity:0}52%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
-      @keyframes e15 {0%{opacity:0}53%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
-      @keyframes e16 {0%{opacity:0}54%{opacity:1}55%{opacity:1}57%{opacity:0}100%{opacity:0}}
+      /* Horizontal grid lines scroll */
+      @keyframes gridScroll { from{transform:translateY(0)} to{transform:translateY(20px)} }
 
-      /* Phrase 4: 57–76% */
-      @keyframes f1  {0%{opacity:0}58%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
-      @keyframes f2  {0%{opacity:0}59%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
-      @keyframes f3  {0%{opacity:0}60%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
-      @keyframes f4  {0%{opacity:0}61%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
-      @keyframes f5  {0%{opacity:0}62%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
-      @keyframes f6  {0%{opacity:0}63%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
-      @keyframes f7  {0%{opacity:0}64%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
-      @keyframes f8  {0%{opacity:0}65%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
-      @keyframes f9  {0%{opacity:0}66%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
-      @keyframes f10 {0%{opacity:0}67%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
-      @keyframes f11 {0%{opacity:0}68%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
-      @keyframes f12 {0%{opacity:0}69%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
-      @keyframes f13 {0%{opacity:0}70%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
-      @keyframes f14 {0%{opacity:0}71%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
-      @keyframes f15 {0%{opacity:0}72%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
-      @keyframes f16 {0%{opacity:0}73%{opacity:1}74%{opacity:1}76%{opacity:0}100%{opacity:0}}
-
-      /* Phrase 5: 76–97% */
-      @keyframes g1  {0%{opacity:0}77%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
-      @keyframes g2  {0%{opacity:0}78%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
-      @keyframes g3  {0%{opacity:0}79%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
-      @keyframes g4  {0%{opacity:0}80%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
-      @keyframes g5  {0%{opacity:0}81%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
-      @keyframes g6  {0%{opacity:0}82%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
-      @keyframes g7  {0%{opacity:0}83%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
-      @keyframes g8  {0%{opacity:0}84%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
-      @keyframes g9  {0%{opacity:0}85%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
-      @keyframes g10 {0%{opacity:0}86%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
-      @keyframes g11 {0%{opacity:0}87%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
-      @keyframes g12 {0%{opacity:0}88%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
-      @keyframes g13 {0%{opacity:0}89%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
-      @keyframes g14 {0%{opacity:0}90%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
-      @keyframes g15 {0%{opacity:0}91%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
-      @keyframes g16 {0%{opacity:0}92%{opacity:1}95%{opacity:1}97%{opacity:0}100%{opacity:0}}
+      /* Corner bracket draw */
+      @keyframes drawBracket { from{stroke-dashoffset:80} to{stroke-dashoffset:0} }
     </style>
 
+    <!-- ── Gradients & Filters ── -->
     <linearGradient id="bgTop" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%"   stop-color="#030915"/>
       <stop offset="55%"  stop-color="#071428"/>
       <stop offset="100%" stop-color="#0a1e3c"/>
     </linearGradient>
+
     <linearGradient id="nameGrad" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%"   stop-color="#a8d8ff"/>
       <stop offset="30%"  stop-color="#6eb4ff"/>
@@ -144,15 +76,17 @@
       <stop offset="100%" stop-color="#ffaaee"/>
     </linearGradient>
     <linearGradient id="nameGradGlitch1" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%"  stop-color="#ff6060"/>
-      <stop offset="50%" stop-color="#ff4488"/>
-      <stop offset="100%"stop-color="#ff80c0"/>
+      <stop offset="0%"   stop-color="#ff6060"/>
+      <stop offset="50%"  stop-color="#ff4488"/>
+      <stop offset="100%" stop-color="#ff80c0"/>
     </linearGradient>
     <linearGradient id="nameGradGlitch2" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%"  stop-color="#40ffcc"/>
-      <stop offset="50%" stop-color="#40d8ff"/>
-      <stop offset="100%"stop-color="#80ffee"/>
+      <stop offset="0%"   stop-color="#40ffcc"/>
+      <stop offset="50%"  stop-color="#40d8ff"/>
+      <stop offset="100%" stop-color="#80ffee"/>
     </linearGradient>
+
+    <!-- Water gradient — deep ocean feel -->
     <linearGradient id="waterDeep" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%"   stop-color="#0a2a5e" stop-opacity="0.92"/>
       <stop offset="40%"  stop-color="#061840" stop-opacity="0.96"/>
@@ -165,17 +99,14 @@
       <stop offset="60%"  stop-color="white" stop-opacity="0.06"/>
       <stop offset="100%" stop-color="white" stop-opacity="0"/>
     </linearGradient>
-    <radialGradient id="ambient" cx="30%" cy="40%" r="55%">
-      <stop offset="0%"   stop-color="#2060cc" stop-opacity="0.09"/>
-      <stop offset="100%" stop-color="#2060cc" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="ambient2" cx="80%" cy="30%" r="40%">
-      <stop offset="0%"   stop-color="#9040ff" stop-opacity="0.06"/>
-      <stop offset="100%" stop-color="#9040ff" stop-opacity="0"/>
-    </radialGradient>
 
+    <!-- Glow filter on name -->
     <filter id="nameGlow" x="-15%" y="-40%" width="130%" height="180%">
       <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
     <filter id="subtleGlow">
@@ -186,17 +117,26 @@
       <feGaussianBlur stdDeviation="0.8"/>
     </filter>
 
+    <!-- Clip for scan line -->
     <clipPath id="bannerClip"><rect width="860" height="300" rx="16"/></clipPath>
 
-
+    <!-- Radial ambient -->
+    <radialGradient id="ambient" cx="30%" cy="40%" r="55%">
+      <stop offset="0%"   stop-color="#2060cc" stop-opacity="0.09"/>
+      <stop offset="100%" stop-color="#2060cc" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ambient2" cx="80%" cy="30%" r="40%">
+      <stop offset="0%"   stop-color="#9040ff" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#9040ff" stop-opacity="0"/>
+    </radialGradient>
   </defs>
 
-  <!-- BACKGROUND -->
+  <!-- ══════════════ BACKGROUND ══════════════ -->
   <rect width="860" height="300" rx="16" fill="url(#bgTop)"/>
   <rect width="860" height="300" rx="16" fill="url(#ambient)"/>
   <rect width="860" height="300" rx="16" fill="url(#ambient2)"/>
 
-  <!-- Grid lines -->
+  <!-- Subtle scrolling grid lines -->
   <g clip-path="url(#bannerClip)" opacity="0.04">
     <g style="animation:gridScroll 2.5s linear infinite">
       <line x1="0" y1="0"   x2="860" y2="0"   stroke="#7eb8ff" stroke-width="0.5"/>
@@ -219,47 +159,65 @@
     </g>
   </g>
 
-  <!-- Scan line -->
+  <!-- Scan line sweep -->
   <g clip-path="url(#bannerClip)">
     <rect width="860" height="2" fill="rgba(126,184,255,0.07)" style="animation:scanLine 4s linear infinite"/>
   </g>
 
-  <!-- CORNER BRACKETS -->
-  <path d="M16 42 L16 16 L42 16" fill="none" stroke="rgba(126,184,255,0.5)" stroke-width="1.5" stroke-dasharray="80" stroke-dashoffset="80" style="animation:drawBracket 0.8s 0.2s ease forwards"/>
-  <path d="M818 16 L844 16 L844 42" fill="none" stroke="rgba(201,160,255,0.5)" stroke-width="1.5" stroke-dasharray="80" stroke-dashoffset="80" style="animation:drawBracket 0.8s 0.4s ease forwards"/>
-  <path d="M16 258 L16 284 L42 284" fill="none" stroke="rgba(126,184,255,0.3)" stroke-width="1" stroke-dasharray="80" stroke-dashoffset="80" style="animation:drawBracket 0.8s 0.6s ease forwards"/>
-  <path d="M818 284 L844 284 L844 258" fill="none" stroke="rgba(201,160,255,0.3)" stroke-width="1" stroke-dasharray="80" stroke-dashoffset="80" style="animation:drawBracket 0.8s 0.8s ease forwards"/>
+  <!-- ══════════════ CORNER BRACKETS ══════════════ -->
+  <!-- TL -->
+  <path d="M16 42 L16 16 L42 16" fill="none" stroke="rgba(126,184,255,0.5)" stroke-width="1.5"
+        stroke-dasharray="80" stroke-dashoffset="80"
+        style="animation:drawBracket 0.8s 0.2s ease forwards"/>
+  <!-- TR -->
+  <path d="M818 16 L844 16 L844 42" fill="none" stroke="rgba(201,160,255,0.5)" stroke-width="1.5"
+        stroke-dasharray="80" stroke-dashoffset="80"
+        style="animation:drawBracket 0.8s 0.4s ease forwards"/>
+  <!-- BL -->
+  <path d="M16 258 L16 284 L42 284" fill="none" stroke="rgba(126,184,255,0.3)" stroke-width="1"
+        stroke-dasharray="80" stroke-dashoffset="80"
+        style="animation:drawBracket 0.8s 0.6s ease forwards"/>
+  <!-- BR -->
+  <path d="M818 284 L844 284 L844 258" fill="none" stroke="rgba(201,160,255,0.3)" stroke-width="1"
+        stroke-dasharray="80" stroke-dashoffset="80"
+        style="animation:drawBracket 0.8s 0.8s ease forwards"/>
 
-  <!-- Status strip -->
-  <rect x="16" y="14" width="86" height="14" rx="4" fill="rgba(60,255,160,0.08)" stroke="rgba(60,255,160,0.3)" stroke-width="0.6" style="animation:fadeIn 1s 0.3s ease forwards;opacity:0"/>
+  <!-- Top status strip -->
+  <rect x="16" y="14" width="86" height="14" rx="4" fill="rgba(60,255,160,0.08)" stroke="rgba(60,255,160,0.3)" stroke-width="0.6"
+        style="animation:fadeIn 1s 0.3s ease forwards;opacity:0"/>
   <circle cx="24" cy="21" r="3" fill="rgba(60,255,160,0.7)" style="animation:fadeIn 1s 0.5s ease forwards;opacity:0">
     <animate attributeName="opacity" values="0.7;0.2;0.7" dur="1.8s" repeatCount="indefinite"/>
   </circle>
-  <text x="30" y="25" font-family="'Space Mono',monospace" font-size="7" fill="rgba(60,255,160,0.85)" letter-spacing="1" style="animation:fadeIn 1s 0.5s ease forwards;opacity:0">ONLINE</text>
-  <text x="844" y="25" font-family="'Space Mono',monospace" font-size="7" fill="rgba(126,184,255,0.35)" letter-spacing="1.5" text-anchor="end" style="animation:fadeIn 1s 0.5s ease forwards;opacity:0">v2.4.1</text>
+  <text x="30" y="25" font-family="'Space Mono',monospace" font-size="7" fill="rgba(60,255,160,0.85)" letter-spacing="1"
+        style="animation:fadeIn 1s 0.5s ease forwards;opacity:0">ONLINE</text>
 
-  <!-- PARTICLES -->
-  <circle cx="55"  cy="290" r="1.3" fill="rgba(150,200,255,0.6)"  style="animation:floatUp 7s 0.0s linear infinite"/>
-  <circle cx="130" cy="295" r="0.8" fill="rgba(170,180,255,0.5)"  style="animation:floatUp 5.5s 1.2s linear infinite"/>
+  <!-- Version stamp top right -->
+  <text x="844" y="25" font-family="'Space Mono',monospace" font-size="7" fill="rgba(126,184,255,0.35)" letter-spacing="1.5" text-anchor="end"
+        style="animation:fadeIn 1s 0.5s ease forwards;opacity:0">v2.4.1</text>
+
+  <!-- ══════════════ FLOATING PARTICLES ══════════════ -->
+  <circle cx="55"  cy="290" r="1.3" fill="rgba(150,200,255,0.6)" style="animation:floatUp 7s 0.0s linear infinite"/>
+  <circle cx="130" cy="295" r="0.8" fill="rgba(170,180,255,0.5)" style="animation:floatUp 5.5s 1.2s linear infinite"/>
   <circle cx="200" cy="292" r="1.5" fill="rgba(140,215,255,0.55)" style="animation:floatUp 9s 0.4s linear infinite"/>
-  <circle cx="275" cy="298" r="0.9" fill="rgba(190,160,255,0.5)"  style="animation:floatUp 6.5s 2.0s linear infinite"/>
-  <circle cx="355" cy="291" r="1.2" fill="rgba(150,205,255,0.6)"  style="animation:floatUp 8s 0.7s linear infinite"/>
+  <circle cx="275" cy="298" r="0.9" fill="rgba(190,160,255,0.5)" style="animation:floatUp 6.5s 2.0s linear infinite"/>
+  <circle cx="355" cy="291" r="1.2" fill="rgba(150,205,255,0.6)" style="animation:floatUp 8s 0.7s linear infinite"/>
   <circle cx="430" cy="296" r="1.6" fill="rgba(130,195,255,0.45)" style="animation:floatUp 4.5s 1.8s linear infinite"/>
   <circle cx="510" cy="289" r="0.7" fill="rgba(165,205,255,0.55)" style="animation:floatUp 10s 0.2s linear infinite"/>
-  <circle cx="590" cy="294" r="1.4" fill="rgba(155,175,255,0.5)"  style="animation:floatUp 6s 3.1s linear infinite"/>
-  <circle cx="665" cy="293" r="1.0" fill="rgba(175,205,255,0.5)"  style="animation:floatUp 7.5s 1.5s linear infinite"/>
+  <circle cx="590" cy="294" r="1.4" fill="rgba(155,175,255,0.5)" style="animation:floatUp 6s 3.1s linear infinite"/>
+  <circle cx="665" cy="293" r="1.0" fill="rgba(175,205,255,0.5)" style="animation:floatUp 7.5s 1.5s linear infinite"/>
   <circle cx="740" cy="297" r="1.1" fill="rgba(145,205,255,0.55)" style="animation:floatUp 8.5s 0.9s linear infinite"/>
   <circle cx="810" cy="291" r="0.8" fill="rgba(160,195,255,0.45)" style="animation:floatUp 5s 2.6s linear infinite"/>
-  <circle cx="95"  cy="293" r="0.6" fill="rgba(255,180,240,0.5)"  style="animation:floatUp 6.2s 3.8s linear infinite"/>
+  <!-- extra small sparkles -->
+  <circle cx="95"  cy="293" r="0.6" fill="rgba(255,180,240,0.5)" style="animation:floatUp 6.2s 3.8s linear infinite"/>
   <circle cx="460" cy="295" r="0.7" fill="rgba(200,255,220,0.45)" style="animation:floatUp 7.8s 2.2s linear infinite"/>
-  <circle cx="680" cy="296" r="0.6" fill="rgba(255,200,180,0.4)"  style="animation:floatUp 5.5s 4.5s linear infinite"/>
+  <circle cx="680" cy="296" r="0.6" fill="rgba(255,200,180,0.4)" style="animation:floatUp 5.5s 4.5s linear infinite"/>
 
-  <!-- ORB GLOWS -->
-  <circle cx="180" cy="110" fill="#4080ff">
+  <!-- ══════════════ ORB GLOWS (background depth) ══════════════ -->
+  <circle cx="180" cy="110" fill="#4080ff" style="animation:orbPulse 4s ease-in-out infinite">
     <animate attributeName="r" values="50;62;50" dur="4s" repeatCount="indefinite"/>
     <animate attributeName="opacity" values="0.06;0.11;0.06" dur="4s" repeatCount="indefinite"/>
   </circle>
-  <circle cx="700" cy="80" fill="#9040ff">
+  <circle cx="700" cy="80" fill="#9040ff" style="animation:orbPulse2 3.5s ease-in-out infinite">
     <animate attributeName="r" values="32;42;32" dur="3.5s" repeatCount="indefinite"/>
     <animate attributeName="opacity" values="0.07;0.13;0.07" dur="3.5s" repeatCount="indefinite"/>
   </circle>
@@ -268,178 +226,186 @@
     <animate attributeName="opacity" values="0.04;0.09;0.04" dur="5s" repeatCount="indefinite"/>
   </circle>
 
-  <!-- TEXT CONTENT -->
-  <text x="430" y="58" text-anchor="middle" font-family="'Space Mono',monospace" font-size="10" letter-spacing="6" fill="rgba(130,200,255,0.6)" style="animation:fadeDown 0.7s 0.1s ease forwards;opacity:0">
+  <!-- ══════════════ TEXT CONTENT ══════════════ -->
+
+  <!-- Greeting -->
+  <text x="430" y="58" text-anchor="middle"
+        font-family="'Space Mono',monospace" font-size="10" letter-spacing="6" fill="rgba(130,200,255,0.6)"
+        style="animation:fadeDown 0.7s 0.1s ease forwards;opacity:0">
     ✦  HEY THERE, I'M  ✦
   </text>
 
-  <!-- Name glitch layers -->
-  <text x="430" y="118" text-anchor="middle" filter="url(#nameGlow)" font-family="'Syne','Space Mono',monospace" font-size="52" font-weight="800" letter-spacing="-1" fill="url(#nameGradGlitch1)" style="animation:glitch1 7s 2s steps(1) infinite;clip-path:inset(0 0 100% 0)">Jazir Safeel</text>
-  <text x="430" y="118" text-anchor="middle" filter="url(#nameGlow)" font-family="'Syne','Space Mono',monospace" font-size="52" font-weight="800" letter-spacing="-1" fill="url(#nameGradGlitch2)" style="animation:glitch2 7s 2s steps(1) infinite;clip-path:inset(0 0 100% 0)">Jazir Safeel</text>
-  <text x="430" y="118" text-anchor="middle" filter="url(#nameGlow)" font-family="'Syne','Space Mono',monospace" font-size="52" font-weight="800" letter-spacing="-1" fill="url(#nameGrad)" style="animation:fadeUp 0.7s 0.3s ease forwards;opacity:0">Jazir Safeel</text>
+  <!-- ── Name with glitch layers ── -->
+  <!-- Glitch layer 1 (red) -->
+  <text x="430" y="118" text-anchor="middle" filter="url(#nameGlow)"
+        font-family="'Syne','Space Mono',monospace" font-size="52" font-weight="800" letter-spacing="-1"
+        fill="url(#nameGradGlitch1)"
+        style="animation:glitch1 7s 2s steps(1) infinite;clip-path:inset(0 0 100% 0)">
+    Jazir Safeel
+  </text>
+  <!-- Glitch layer 2 (cyan) -->
+  <text x="430" y="118" text-anchor="middle" filter="url(#nameGlow)"
+        font-family="'Syne','Space Mono',monospace" font-size="52" font-weight="800" letter-spacing="-1"
+        fill="url(#nameGradGlitch2)"
+        style="animation:glitch2 7s 2s steps(1) infinite;clip-path:inset(0 0 100% 0)">
+    Jazir Safeel
+  </text>
+  <!-- Main name -->
+  <text x="430" y="118" text-anchor="middle" filter="url(#nameGlow)"
+        font-family="'Syne','Space Mono',monospace" font-size="52" font-weight="800" letter-spacing="-1"
+        fill="url(#nameGrad)"
+        style="animation:fadeUp 0.7s 0.3s ease forwards;opacity:0">
+    Jazir Safeel
+  </text>
 
   <!-- Blinking cursor after name -->
-  <rect x="650" y="92" width="3" height="38" rx="1" fill="#7eb8ff" style="animation:blink 1s step-end infinite,fadeIn 0.5s 0.9s ease forwards;opacity:0"/>
+  <rect x="650" y="92" width="3" height="38" rx="1" fill="#7eb8ff"
+        style="animation:blink 1s step-end infinite,fadeIn 0.5s 0.9s ease forwards;opacity:0"/>
 
-  <!-- Subtitle -->
-  <text x="430" y="142" text-anchor="middle" font-family="'Space Mono',monospace" font-size="11" letter-spacing="2.5" fill="rgba(190,215,255,0.65)" style="animation:slideLeft 0.8s 0.6s ease forwards;opacity:0">
+  <!-- Subtitle / tagline -->
+  <text x="430" y="142" text-anchor="middle"
+        font-family="'Space Mono',monospace" font-size="11" letter-spacing="2.5" fill="rgba(190,215,255,0.65)"
+        style="animation:slideLeft 0.8s 0.6s ease forwards;opacity:0">
     CRAFTING DIGITAL PRODUCTS THAT FEEL ALIVE
   </text>
 
-  <!-- ── Terminal line ── -->
+  <!-- ── Terminal typing line ── -->
   <text x="220" y="166" font-family="'Space Mono',monospace" font-size="11.5" fill="rgba(80,200,120,0.7)">~/dev $</text>
 
-  <!-- Phrase 1: "full-stack engineer · ai integrations" — 16 chunks, each ~2 chars -->
-  <text font-family="'Space Mono',monospace" font-size="11.5" fill="rgba(220,235,255,0.9)" filter="url(#subtleGlow)">
-    <tspan x="290" y="166" opacity="0" style="animation:c1 13s 1s steps(1) infinite">fu</tspan>
-    <tspan opacity="0" style="animation:c2 13s 1s steps(1) infinite">ll</tspan>
-    <tspan opacity="0" style="animation:c3 13s 1s steps(1) infinite">-s</tspan>
-    <tspan opacity="0" style="animation:c4 13s 1s steps(1) infinite">ta</tspan>
-    <tspan opacity="0" style="animation:c5 13s 1s steps(1) infinite">ck</tspan>
-    <tspan opacity="0" style="animation:c6 13s 1s steps(1) infinite"> e</tspan>
-    <tspan opacity="0" style="animation:c7 13s 1s steps(1) infinite">ng</tspan>
-    <tspan opacity="0" style="animation:c8 13s 1s steps(1) infinite">in</tspan>
-    <tspan opacity="0" style="animation:c9 13s 1s steps(1) infinite">ee</tspan>
-    <tspan opacity="0" style="animation:c10 13s 1s steps(1) infinite">r </tspan>
-    <tspan opacity="0" style="animation:c11 13s 1s steps(1) infinite">· </tspan>
-    <tspan opacity="0" style="animation:c12 13s 1s steps(1) infinite">ai</tspan>
-    <tspan opacity="0" style="animation:c13 13s 1s steps(1) infinite"> i</tspan>
-    <tspan opacity="0" style="animation:c14 13s 1s steps(1) infinite">nt</tspan>
-    <tspan opacity="0" style="animation:c15 13s 1s steps(1) infinite">eg</tspan>
-    <tspan opacity="0" style="animation:c16 13s 1s steps(1) infinite">rations</tspan>
+  <text x="290" y="166" font-family="'Space Mono',monospace" font-size="11.5"
+        fill="rgba(220,235,255,0.9)" letter-spacing="0.5"
+        filter="url(#subtleGlow)" style="animation:t1 13s 1s steps(1) infinite">
+    full-stack engineer · ai integrations_
+  </text>
+  <text x="290" y="166" font-family="'Space Mono',monospace" font-size="11.5"
+        fill="rgba(220,235,255,0.9)" letter-spacing="0.5"
+        opacity="0" style="animation:t2 13s 1s steps(1) infinite">
+    react · next.js · node.js · supabase_
+  </text>
+  <text x="290" y="166" font-family="'Space Mono',monospace" font-size="11.5"
+        fill="rgba(220,235,255,0.9)" letter-spacing="0.5"
+        opacity="0" style="animation:t3 13s 1s steps(1) infinite">
+    obsessed with performance &amp; motion_
+  </text>
+  <text x="290" y="166" font-family="'Space Mono',monospace" font-size="11.5"
+        fill="rgba(220,235,255,0.9)" letter-spacing="0.5"
+        opacity="0" style="animation:t4 13s 1s steps(1) infinite">
+    building the web, one pixel at a time_
+  </text>
+  <text x="290" y="166" font-family="'Space Mono',monospace" font-size="11.5"
+        fill="rgba(220,235,255,0.9)" letter-spacing="0.5"
+        opacity="0" style="animation:t5 13s 1s steps(1) infinite">
+    where creativity meets clean code_
   </text>
 
-  <!-- Phrase 2: "react · next.js · node.js · supabase" -->
-  <text font-family="'Space Mono',monospace" font-size="11.5" fill="rgba(220,235,255,0.9)">
-    <tspan x="290" y="166" opacity="0" style="animation:d1 13s 1s steps(1) infinite">re</tspan>
-    <tspan opacity="0" style="animation:d2 13s 1s steps(1) infinite">ac</tspan>
-    <tspan opacity="0" style="animation:d3 13s 1s steps(1) infinite">t </tspan>
-    <tspan opacity="0" style="animation:d4 13s 1s steps(1) infinite">· </tspan>
-    <tspan opacity="0" style="animation:d5 13s 1s steps(1) infinite">ne</tspan>
-    <tspan opacity="0" style="animation:d6 13s 1s steps(1) infinite">xt</tspan>
-    <tspan opacity="0" style="animation:d7 13s 1s steps(1) infinite">.j</tspan>
-    <tspan opacity="0" style="animation:d8 13s 1s steps(1) infinite">s </tspan>
-    <tspan opacity="0" style="animation:d9 13s 1s steps(1) infinite">· </tspan>
-    <tspan opacity="0" style="animation:d10 13s 1s steps(1) infinite">no</tspan>
-    <tspan opacity="0" style="animation:d11 13s 1s steps(1) infinite">de</tspan>
-    <tspan opacity="0" style="animation:d12 13s 1s steps(1) infinite">.j</tspan>
-    <tspan opacity="0" style="animation:d13 13s 1s steps(1) infinite">s </tspan>
-    <tspan opacity="0" style="animation:d14 13s 1s steps(1) infinite">· </tspan>
-    <tspan opacity="0" style="animation:d15 13s 1s steps(1) infinite">su</tspan>
-    <tspan opacity="0" style="animation:d16 13s 1s steps(1) infinite">pabase</tspan>
-  </text>
+  <!-- Blinking cursor on terminal line -->
+  <rect x="620" y="154" width="8" height="14" rx="1" fill="rgba(130,200,255,0.85)"
+        style="animation:blink 0.85s step-end infinite"/>
 
-  <!-- Phrase 3: "obsessed with performance &amp; motion" -->
-  <text font-family="'Space Mono',monospace" font-size="11.5" fill="rgba(220,235,255,0.9)">
-    <tspan x="290" y="166" opacity="0" style="animation:e1 13s 1s steps(1) infinite">ob</tspan>
-    <tspan opacity="0" style="animation:e2 13s 1s steps(1) infinite">se</tspan>
-    <tspan opacity="0" style="animation:e3 13s 1s steps(1) infinite">ss</tspan>
-    <tspan opacity="0" style="animation:e4 13s 1s steps(1) infinite">ed</tspan>
-    <tspan opacity="0" style="animation:e5 13s 1s steps(1) infinite"> w</tspan>
-    <tspan opacity="0" style="animation:e6 13s 1s steps(1) infinite">it</tspan>
-    <tspan opacity="0" style="animation:e7 13s 1s steps(1) infinite">h </tspan>
-    <tspan opacity="0" style="animation:e8 13s 1s steps(1) infinite">pe</tspan>
-    <tspan opacity="0" style="animation:e9 13s 1s steps(1) infinite">rf</tspan>
-    <tspan opacity="0" style="animation:e10 13s 1s steps(1) infinite">or</tspan>
-    <tspan opacity="0" style="animation:e11 13s 1s steps(1) infinite">ma</tspan>
-    <tspan opacity="0" style="animation:e12 13s 1s steps(1) infinite">nc</tspan>
-    <tspan opacity="0" style="animation:e13 13s 1s steps(1) infinite">e </tspan>
-    <tspan opacity="0" style="animation:e14 13s 1s steps(1) infinite">&amp; </tspan>
-    <tspan opacity="0" style="animation:e15 13s 1s steps(1) infinite">mo</tspan>
-    <tspan opacity="0" style="animation:e16 13s 1s steps(1) infinite">tion</tspan>
-  </text>
-
-  <!-- Phrase 4: "building the web, one pixel at a time" -->
-  <text font-family="'Space Mono',monospace" font-size="11.5" fill="rgba(220,235,255,0.9)">
-    <tspan x="290" y="166" opacity="0" style="animation:f1 13s 1s steps(1) infinite">bu</tspan>
-    <tspan opacity="0" style="animation:f2 13s 1s steps(1) infinite">il</tspan>
-    <tspan opacity="0" style="animation:f3 13s 1s steps(1) infinite">di</tspan>
-    <tspan opacity="0" style="animation:f4 13s 1s steps(1) infinite">ng</tspan>
-    <tspan opacity="0" style="animation:f5 13s 1s steps(1) infinite"> t</tspan>
-    <tspan opacity="0" style="animation:f6 13s 1s steps(1) infinite">he</tspan>
-    <tspan opacity="0" style="animation:f7 13s 1s steps(1) infinite"> w</tspan>
-    <tspan opacity="0" style="animation:f8 13s 1s steps(1) infinite">eb</tspan>
-    <tspan opacity="0" style="animation:f9 13s 1s steps(1) infinite">, </tspan>
-    <tspan opacity="0" style="animation:f10 13s 1s steps(1) infinite">on</tspan>
-    <tspan opacity="0" style="animation:f11 13s 1s steps(1) infinite">e </tspan>
-    <tspan opacity="0" style="animation:f12 13s 1s steps(1) infinite">pi</tspan>
-    <tspan opacity="0" style="animation:f13 13s 1s steps(1) infinite">xe</tspan>
-    <tspan opacity="0" style="animation:f14 13s 1s steps(1) infinite">l </tspan>
-    <tspan opacity="0" style="animation:f15 13s 1s steps(1) infinite">at</tspan>
-    <tspan opacity="0" style="animation:f16 13s 1s steps(1) infinite"> a time</tspan>
-  </text>
-
-  <!-- Phrase 5: "where creativity meets clean code" -->
-  <text font-family="'Space Mono',monospace" font-size="11.5" fill="rgba(220,235,255,0.9)">
-    <tspan x="290" y="166" opacity="0" style="animation:g1 13s 1s steps(1) infinite">wh</tspan>
-    <tspan opacity="0" style="animation:g2 13s 1s steps(1) infinite">er</tspan>
-    <tspan opacity="0" style="animation:g3 13s 1s steps(1) infinite">e </tspan>
-    <tspan opacity="0" style="animation:g4 13s 1s steps(1) infinite">cr</tspan>
-    <tspan opacity="0" style="animation:g5 13s 1s steps(1) infinite">ea</tspan>
-    <tspan opacity="0" style="animation:g6 13s 1s steps(1) infinite">ti</tspan>
-    <tspan opacity="0" style="animation:g7 13s 1s steps(1) infinite">vi</tspan>
-    <tspan opacity="0" style="animation:g8 13s 1s steps(1) infinite">ty</tspan>
-    <tspan opacity="0" style="animation:g9 13s 1s steps(1) infinite"> m</tspan>
-    <tspan opacity="0" style="animation:g10 13s 1s steps(1) infinite">ee</tspan>
-    <tspan opacity="0" style="animation:g11 13s 1s steps(1) infinite">ts</tspan>
-    <tspan opacity="0" style="animation:g12 13s 1s steps(1) infinite"> c</tspan>
-    <tspan opacity="0" style="animation:g13 13s 1s steps(1) infinite">le</tspan>
-    <tspan opacity="0" style="animation:g14 13s 1s steps(1) infinite">an</tspan>
-    <tspan opacity="0" style="animation:g15 13s 1s steps(1) infinite"> c</tspan>
-    <tspan opacity="0" style="animation:g16 13s 1s steps(1) infinite">ode</tspan>
-  </text>
-
-  <!-- Blinking terminal cursor -->
-  <rect x="620" y="154" width="8" height="14" rx="1" fill="rgba(130,200,255,0.85)" style="animation:blink 0.85s step-end infinite"/>
-
-  <!-- STAT COUNTERS -->
+  <!-- ══════════════ STAT COUNTERS ══════════════ -->
   <g style="animation:fadeUp 0.8s 1.0s ease forwards;opacity:0">
+    <!-- divider line left -->
     <line x1="60" y1="158" x2="60" y2="178" stroke="rgba(126,184,255,0.2)" stroke-width="0.8"/>
-    <text x="68" y="167" font-family="'Space Mono',monospace" font-size="14" font-weight="700" fill="rgba(126,184,255,0.75)" style="animation:statGlow 2.5s 1.5s ease-in-out infinite">3+</text>
-    <text x="68" y="178" font-family="'Space Mono',monospace" font-size="7" letter-spacing="1" fill="rgba(130,190,255,0.45)">YRS EXP</text>
+    <text x="68" y="167" font-family="'Space Mono',monospace" font-size="14" font-weight="700"
+          fill="rgba(126,184,255,0.75)" style="animation:statGlow 2.5s 1.5s ease-in-out infinite">3+</text>
+    <text x="68" y="178" font-family="'Space Mono',monospace" font-size="7" letter-spacing="1"
+          fill="rgba(130,190,255,0.45)">YRS EXP</text>
+    <!-- divider -->
     <line x1="118" y1="158" x2="118" y2="178" stroke="rgba(126,184,255,0.12)" stroke-width="0.8"/>
-    <text x="126" y="167" font-family="'Space Mono',monospace" font-size="14" font-weight="700" fill="rgba(201,160,255,0.75)" style="animation:statGlow 2.5s 1.8s ease-in-out infinite">10+</text>
-    <text x="126" y="178" font-family="'Space Mono',monospace" font-size="7" letter-spacing="1" fill="rgba(190,160,255,0.45)">PROJECTS</text>
+    <text x="126" y="167" font-family="'Space Mono',monospace" font-size="14" font-weight="700"
+          fill="rgba(201,160,255,0.75)" style="animation:statGlow 2.5s 1.8s ease-in-out infinite">10+</text>
+    <text x="126" y="178" font-family="'Space Mono',monospace" font-size="7" letter-spacing="1"
+          fill="rgba(190,160,255,0.45)">PROJECTS</text>
     <line x1="178" y1="158" x2="178" y2="178" stroke="rgba(126,184,255,0.12)" stroke-width="0.8"/>
   </g>
 
-  <!-- BADGES -->
+  <!-- ══════════════ BADGES ══════════════ -->
+  <!-- Badge 1 -->
   <g style="animation:badgeIn 0.6s 1.1s ease forwards;opacity:0">
-    <rect x="205" y="185" width="118" height="22" rx="11" fill="rgba(126,184,255,0.07)" stroke="rgba(126,184,255,0.35)" stroke-width="0.8"/>
-    <text x="264" y="200" text-anchor="middle" font-family="'Space Mono',monospace" font-size="9" letter-spacing="2" fill="#7eb8ff">FULL-STACK DEV</text>
+    <rect x="205" y="185" width="118" height="22" rx="11"
+          fill="rgba(126,184,255,0.07)" stroke="rgba(126,184,255,0.35)" stroke-width="0.8"/>
+    <text x="264" y="200" text-anchor="middle" font-family="'Space Mono',monospace" font-size="9"
+          letter-spacing="2" fill="#7eb8ff">FULL-STACK DEV</text>
   </g>
+  <!-- Badge 2 -->
   <g style="animation:badgeIn 0.6s 1.25s ease forwards;opacity:0">
-    <rect x="337" y="185" width="96" height="22" rx="11" fill="rgba(201,160,255,0.07)" stroke="rgba(201,160,255,0.35)" stroke-width="0.8"/>
-    <text x="385" y="200" text-anchor="middle" font-family="'Space Mono',monospace" font-size="9" letter-spacing="2" fill="#c9a0ff">AI EXPLORER</text>
+    <rect x="337" y="185" width="96" height="22" rx="11"
+          fill="rgba(201,160,255,0.07)" stroke="rgba(201,160,255,0.35)" stroke-width="0.8"/>
+    <text x="385" y="200" text-anchor="middle" font-family="'Space Mono',monospace" font-size="9"
+          letter-spacing="2" fill="#c9a0ff">AI EXPLORER</text>
   </g>
+  <!-- Badge 3 -->
   <g style="animation:badgeIn 0.6s 1.4s ease forwards;opacity:0">
-    <rect x="447" y="185" width="118" height="22" rx="11" fill="rgba(255,157,226,0.07)" stroke="rgba(255,157,226,0.35)" stroke-width="0.8"/>
-    <text x="506" y="200" text-anchor="middle" font-family="'Space Mono',monospace" font-size="9" letter-spacing="2" fill="#ff9de2">UI/UX NERD</text>
+    <rect x="447" y="185" width="118" height="22" rx="11"
+          fill="rgba(255,157,226,0.07)" stroke="rgba(255,157,226,0.35)" stroke-width="0.8"/>
+    <text x="506" y="200" text-anchor="middle" font-family="'Space Mono',monospace" font-size="9"
+          letter-spacing="2" fill="#ff9de2">UI/UX NERD</text>
   </g>
+  <!-- Badge 4 (new) -->
   <g style="animation:badgeIn 0.6s 1.55s ease forwards;opacity:0">
-    <rect x="579" y="185" width="100" height="22" rx="11" fill="rgba(80,255,200,0.07)" stroke="rgba(80,255,200,0.3)" stroke-width="0.8"/>
-    <text x="629" y="200" text-anchor="middle" font-family="'Space Mono',monospace" font-size="9" letter-spacing="2" fill="rgba(80,255,200,0.85)">OPEN SOURCE</text>
+    <rect x="579" y="185" width="100" height="22" rx="11"
+          fill="rgba(80,255,200,0.07)" stroke="rgba(80,255,200,0.3)" stroke-width="0.8"/>
+    <text x="629" y="200" text-anchor="middle" font-family="'Space Mono',monospace" font-size="9"
+          letter-spacing="2" fill="rgba(80,255,200,0.85)">OPEN SOURCE</text>
   </g>
 
-  <!-- WATER -->
+  <!-- ══════════════ REALISTIC WATER ══════════════ -->
+  <!-- Deep water fill base -->
   <rect x="0" y="200" width="860" height="100" fill="url(#waterDeep)" rx="0"/>
-  <path fill="rgba(10,55,140,0.72)" d="M0 210 C60 196,140 224,220 210 C300 196,380 224,460 210 C540 196,620 224,700 210 C780 196,840 224,860 210 L860 300 L0 300 Z" style="animation:wA 2.6s ease-in-out infinite alternate"/>
-  <path fill="rgba(14,48,120,0.65)" d="M0 228 C90 212,180 244,270 228 C360 212,450 244,540 228 C630 212,720 244,810 228 C840 222,855 228,860 228 L860 300 L0 300 Z" style="animation:wB 3.4s 0.3s ease-in-out infinite alternate"/>
-  <path fill="rgba(18,42,105,0.60)" d="M0 244 C120 228,240 260,360 244 C480 228,600 260,720 244 C780 236,830 248,860 244 L860 300 L0 300 Z" style="animation:wC 2.1s 0.6s ease-in-out infinite alternate"/>
-  <path fill="rgba(8,30,80,0.70)"  d="M0 258 C150 244,300 272,450 258 C600 244,750 272,860 258 L860 300 L0 300 Z" style="animation:wD 4.0s 0.1s ease-in-out infinite alternate"/>
-  <path fill="rgba(6,24,66,0.75)"  d="M0 270 C200 258,400 282,600 270 C720 262,800 278,860 270 L860 300 L0 300 Z" style="animation:wE 1.8s 0.9s ease-in-out infinite alternate"/>
-  <path fill="rgba(4,18,52,0.85)"  d="M0 282 C250 274,500 290,750 282 C810 278,845 286,860 282 L860 300 L0 300 Z" style="animation:wF 3.0s 0.5s ease-in-out infinite alternate"/>
 
-  <!-- Foam highlights -->
-  <path fill="none" stroke="rgba(180,220,255,0.45)" stroke-width="1.2" filter="url(#waterBlur)" d="M0 210 C60 196,140 224,220 210 C300 196,380 224,460 210 C540 196,620 224,700 210 C780 196,840 224,860 210" style="animation:wA 2.6s ease-in-out infinite alternate,foam1 2.6s ease-in-out infinite alternate"/>
-  <path fill="none" stroke="rgba(160,210,255,0.30)" stroke-width="0.9" filter="url(#waterBlur)" d="M0 228 C90 212,180 244,270 228 C360 212,450 244,540 228 C630 212,720 244,810 228 C840 222,855 228,860 228" style="animation:wB 3.4s 0.3s ease-in-out infinite alternate,foam2 3.4s ease-in-out infinite alternate"/>
-  <path fill="none" stroke="rgba(200,230,255,0.35)" stroke-width="1.0" filter="url(#waterBlur)" d="M0 244 C120 228,240 260,360 244 C480 228,600 260,720 244 C780 236,830 248,860 244" style="animation:wC 2.1s 0.6s ease-in-out infinite alternate,foam3 2.1s ease-in-out infinite alternate"/>
+  <!-- Wave layer A — deepest, slowest (2.6s) -->
+  <path fill="rgba(10,55,140,0.72)"
+        d="M0 210 C60 196,140 224,220 210 C300 196,380 224,460 210 C540 196,620 224,700 210 C780 196,840 224,860 210 L860 300 L0 300 Z"
+        style="animation:wA 2.6s ease-in-out infinite alternate"/>
 
-  <!-- Shimmer -->
-  <rect y="200" width="860" height="100" fill="url(#waterShimmer)" style="animation:shimmer 3.5s 0s linear infinite"/>
-  <rect y="200" width="860" height="100" fill="url(#waterShimmer)" style="animation:shimmer 3.5s 1.75s linear infinite"/>
+  <!-- Wave layer B (3.4s) -->
+  <path fill="rgba(14,48,120,0.65)"
+        d="M0 228 C90 212,180 244,270 228 C360 212,450 244,540 228 C630 212,720 244,810 228 C840 222,855 228,860 228 L860 300 L0 300 Z"
+        style="animation:wB 3.4s 0.3s ease-in-out infinite alternate"/>
 
-  <!-- Caustic dots -->
+  <!-- Wave layer C (2.1s — fast) -->
+  <path fill="rgba(18,42,105,0.60)"
+        d="M0 244 C120 228,240 260,360 244 C480 228,600 260,720 244 C780 236,830 248,860 244 L860 300 L0 300 Z"
+        style="animation:wC 2.1s 0.6s ease-in-out infinite alternate"/>
+
+  <!-- Wave D (4.0s) -->
+  <path fill="rgba(8,30,80,0.70)"
+        d="M0 258 C150 244,300 272,450 258 C600 244,750 272,860 258 L860 300 L0 300 Z"
+        style="animation:wD 4.0s 0.1s ease-in-out infinite alternate"/>
+
+  <!-- Wave E (1.8s — fastest) -->
+  <path fill="rgba(6,24,66,0.75)"
+        d="M0 270 C200 258,400 282,600 270 C720 262,800 278,860 270 L860 300 L0 300 Z"
+        style="animation:wE 1.8s 0.9s ease-in-out infinite alternate"/>
+
+  <!-- Wave F (3.0s) -->
+  <path fill="rgba(4,18,52,0.85)"
+        d="M0 282 C250 274,500 290,750 282 C810 278,845 286,860 282 L860 300 L0 300 Z"
+        style="animation:wF 3.0s 0.5s ease-in-out infinite alternate"/>
+
+  <!-- ── Foam highlights on wave crests ── -->
+  <!-- Foam A — sits on top of wave A -->
+  <path fill="none" stroke="rgba(180,220,255,0.45)" stroke-width="1.2" filter="url(#waterBlur)"
+        d="M0 210 C60 196,140 224,220 210 C300 196,380 224,460 210 C540 196,620 224,700 210 C780 196,840 224,860 210"
+        style="animation:wA 2.6s ease-in-out infinite alternate,foam1 2.6s ease-in-out infinite alternate"/>
+
+  <!-- Foam B -->
+  <path fill="none" stroke="rgba(160,210,255,0.30)" stroke-width="0.9" filter="url(#waterBlur)"
+        d="M0 228 C90 212,180 244,270 228 C360 212,450 244,540 228 C630 212,720 244,810 228 C840 222,855 228,860 228"
+        style="animation:wB 3.4s 0.3s ease-in-out infinite alternate,foam2 3.4s ease-in-out infinite alternate"/>
+
+  <!-- Foam C (bright, fast) -->
+  <path fill="none" stroke="rgba(200,230,255,0.35)" stroke-width="1.0" filter="url(#waterBlur)"
+        d="M0 244 C120 228,240 260,360 244 C480 228,600 260,720 244 C780 236,830 248,860 244"
+        style="animation:wC 2.1s 0.6s ease-in-out infinite alternate,foam3 2.1s ease-in-out infinite alternate"/>
+
+  <!-- ── Shimmer light moving across water ── -->
+  <rect y="200" width="860" height="100" fill="url(#waterShimmer)"
+        style="animation:shimmer 3.5s 0s linear infinite"/>
+  <rect y="200" width="860" height="100" fill="url(#waterShimmer)"
+        style="animation:shimmer 3.5s 1.75s linear infinite"/>
+
+  <!-- ── Underwater caustic dots ── -->
   <g opacity="0.18" style="animation:drift 4s ease-in-out infinite">
     <ellipse cx="120" cy="265" rx="18" ry="4" fill="rgba(100,180,255,0.5)"/>
     <ellipse cx="300" cy="275" rx="14" ry="3" fill="rgba(120,190,255,0.4)"/>
@@ -452,8 +418,12 @@
     <ellipse cx="630" cy="278" rx="15" ry="3" fill="rgba(120,190,255,0.45)"/>
   </g>
 
-  <!-- BORDER -->
-  <rect width="860" height="300" rx="16" fill="none" stroke="rgba(100,180,255,0.14)" stroke-width="1"/>
+  <!-- ══════════════ BORDER ══════════════ -->
+  <rect width="860" height="300" rx="16" fill="none"
+        stroke="rgba(100,180,255,0.14)" stroke-width="1"/>
+
+  <!-- Inner border glow at top only -->
   <path d="M16 0 Q0 0 0 16 L0 40" fill="none" stroke="rgba(126,184,255,0.25)" stroke-width="1"/>
   <path d="M844 0 Q860 0 860 16 L860 40" fill="none" stroke="rgba(201,160,255,0.25)" stroke-width="1"/>
+
 </svg>
