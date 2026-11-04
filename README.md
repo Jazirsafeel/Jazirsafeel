@@ -1,12 +1,6 @@
 <div align="center">
-  <picture>
-    <img
-      src="https://albusdumbledore.netlify.app"
-      alt="Jazir Safeel Banner"
-      width="860"
-    />
-  </picture>
-</div>
+  <img src="./jazir_safeel.svg" alt="Jazir Safeel Banner" width="860"/>
+</div>  
 
 ###  About Me:
 Building web apps, full-stack projects, and AI integrations.<br>
