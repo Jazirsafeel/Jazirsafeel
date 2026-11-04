@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./jazir_safeel.svg" alt="Jazir Safeel Banner" width="860"/>
+  <img src="./jazir_banner.svg" alt="Jazir Safeel Banner" width="860"/>
 </div>  
 
 ###  About Me:
