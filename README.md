@@ -1,5 +1,11 @@
 <div align="center">
-  <img src="https://albusdumbledore.netlify.app" alt="Jazir Safeel Banner" width="860"/>
+  <picture>
+    <img
+      src="https://albusdumbledore.netlify.app"
+      alt="Jazir Safeel Banner"
+      width="860"
+    />
+  </picture>
 </div>
 
 ###  About Me:
